@@ -31,7 +31,7 @@ CREATE TABLE conversations (
   posting_id INTEGER REFERENCES postings(id) ON DELETE CASCADE,
 
   sender_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
-  recipient_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  recipient_id INTEGER REFERENCES users(id) ON DELETE CASCADE
 );
 
 

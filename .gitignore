@@ -5,3 +5,4 @@ public/styles
 *.sqlite3
 .DS_Store
 db/.DS_Store
+mentor-example.sql

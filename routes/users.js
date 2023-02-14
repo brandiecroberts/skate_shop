@@ -8,17 +8,17 @@
 const express = require('express');
 const router  = express.Router();
 
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');
 
-const cookieSession = require('cookie-session');
+// const cookieSession = require('cookie-session');
 
-router.use(cookieSession(({
-  name: 'session',
-  keys: ['abcdefghijklmnop']
-}))
-);
+// router.use(cookieSession(({
+//   name: 'session',
+//   keys: ['abcdefghijklmnop']
+// }))
+// );
 
-const {getUsers, addUser, addFavourite, deleteFavourite, addPosting, deletePosting, sendMessage, receiveMessage, fetchPosting, fetchFavourites} = require('../db/queries/users.js');
+// const {getUsers, addUser, addFavourite, deleteFavourite, addPosting, deletePosting, sendMessage, receiveMessage, fetchPosting, fetchFavourites} = require('../db/queries/users.js');
 
 
 /////////GETS
@@ -26,8 +26,6 @@ const {getUsers, addUser, addFavourite, deleteFavourite, addPosting, deletePosti
 router.get('/', (req, res) => {
   res.render('users');
 });
-<<<<<<< HEAD
-=======
 
 router.get('/login', (req, res) => {
   res.render('login');
@@ -42,7 +40,11 @@ router.get('/conversations', (req, res) => {
 });
 
 router.get('/favourites', (req, res) => {
-  res.render('favourites');
+  fetchFavourites()
+  .then((response) => {
+    const templateVars = {data: response}
+    res.render('favourites', templateVars);
+  });
 });
 
 router.get('/newposting', (req, res) => {
@@ -57,28 +59,10 @@ router.get('/mypostings', (req, res) => {
 ////////// POSTS
 
 router.post('/favourites', (req, res) => {
-  addFavourite();
 });
 
 router.post('/register', (req, res) => {
-  // const name = req.body.name;
-  // const email = req.body.email;
-  // const password = bcrypt.hashSync(password, 10); // this will be the bcrypt hashed password instead
-
-  // //If email or password field is empty
-  // if (!users.email || !users.password) {
-  //   return res.status(400).send("Please input an email and password");
-  // }
-
-  // //Adding user if they dont exist
-  // const foundUser = getUserByEmail(email, users);
-
-  // if (!foundUser) {
-  //   //run function that adds user to DB
-  //   res.redirect("/urls");
-  // } else {
-  //   return res.status(400).send('Email address is already in use');
-  // }
+  res.render('register');
 });
 
 router.post('/login', (req, res) => {
@@ -110,6 +94,5 @@ router.post("/logout", (req, res) => {
   // res.redirect("/login");
   res.render('logout');
 });
->>>>>>> d5f8f4b8a6b0e5f3e44cdf97ea68aac13a260a93
 
 module.exports = router;

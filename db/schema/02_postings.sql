@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS postings CASCADE;
+CREATE TABLE postings (
+  id SERIAL PRIMARY KEY NOT NULL,
+  title VARCHAR(255) NOT NULL,
+  description TEXT,
+  price SMALLINT,
+  condition VARCHAR(255),
+  sold BOOLEAN NOT NULL DEFAULT FALSE,
+
+  seller_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+  photo_url VARCHAR(255) NOT NULL
+);

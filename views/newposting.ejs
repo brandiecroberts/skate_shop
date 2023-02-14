@@ -19,8 +19,28 @@
 
 <body>
   <h1>New Posting</h1>
-  <button id="fetch-users">New Posting</button>
-  <ul id="users"></ul>
+
+  <form method="POST" action="/postings/new">
+    <h4>Enter your user ID</h4>
+    <input type="text" name="sellerid">
+    <h4>Enter posting title</h4>
+    <input type="text" name="title">
+    <h4>Enter description</h4>
+    <input type="text" name="desc">
+    <h4>Enter photo URL</h4>
+    <input type="text" name="photourl">
+    <h4>Enter price</h4>
+    <input type="text" name="price">
+    <h4>Condition of item</h4>
+    <input type="text" name="condition">
+    <br>
+    <button type="submit">
+      Add posting
+    </button>
+  </form>
+
+  <!-- <button id="fetch-users">New Posting</button>
+  <ul id="users"></ul> -->
 </body>
 
 </html>

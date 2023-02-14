@@ -12,15 +12,46 @@
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
   <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/nav.css"/>
+  <link rel="stylesheet" href="/styles/register.css"/>
+
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/users.js"></script>
 </head>
 
 <body>
-  <h1>Register</h1>
-  <button id="fetch-users">Register</button>
-  <ul id="users"></ul>
+  <nav class="navbar">
+    <span class="navbar-logo">Skateboard Shop</span>
+    <div class="navbar-heading">
+    <button class="navbar-action">Register</button>
+    <button class="navbar-action">Log In</button>
+    <button class="navbar-action">Log Out</button>
+    <i class="fa-solid fa-angles-down"></i>
+  </div>
+  </nav>
+
+  <div class="header-register">
+  <h1>Register Here</h1>
+</div>
+
+  <form method="POST" action="/register">
+    <h4>Enter your name</h4>
+    <input type="text" name="name" placeholder="Name">
+    <h4>Enter an email</h4>
+    <input type="email" name="email" placeholder="Email">
+    <h4>Enter a password</h4>
+    <input type="password" name="password" placeholder="Password">
+    <br>
+    <div class="button-createaccount">
+    <button type="submit">
+      Create Account
+    </button>
+  </div>
+  </form>
+
+  <!-- <button id="fetch-users">Register</button>
+  <ul id="users"></ul> -->
 </body>
 
 </html>

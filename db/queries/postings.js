@@ -1,19 +1,18 @@
 const db = require('../connection');
-//// POSTINGS
 
-const addPosting = (postInfo) => {
-  return db.query(`
+const addPosting = (seller_id, title, description, photo_url, price, condition) => {
+    return db.query(`
   INSERT INTO postings (seller_id, title, description, photo_url, price, condition)
-  VALUES (users.id, $1, $2, $3, $4, $5)
+  VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *
-  `, [1])
-    .then((result) => {
-      return result.rows;
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
+  `, [seller_id, title, description, photo_url, price, condition])
+      .then((result) => {
+        return result.rows;
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
 
 const deletePosting = (posting) => {
   return db.query(`
@@ -43,4 +42,4 @@ const fetchPosting = (posting) => {
     });
 };
 
-module.exports = {fetchPosting, deletePosting, addPosting};
+module.exports = { addPosting, deletePosting, fetchPosting };

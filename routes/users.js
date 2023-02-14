@@ -44,11 +44,5 @@ router.post('/register', (req, res) => {
 
 
 
-router.post("/logout", (req, res) => {
-  // res.clearCookie("userID");
-  // req.session = null;
-  // res.redirect("/login");
-  res.render('logout');
-});
 
 module.exports = router;

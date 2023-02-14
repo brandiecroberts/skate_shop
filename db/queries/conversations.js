@@ -41,12 +41,13 @@ const displayConversations = (data) => {
       JOIN postings ON users.id = postings.seller_id
       WHERE conversations.sender_id = $1
       `, [data.conversations.sender_id, data.conversations.posting_id])
-    .then((result) => {
-      console.log(result.rows);
-      return result.rows;
-    })
-    .catch((err) => {
-      console.log(err.message);
-    });
-};
- module.exports = {sendMessage, receiveMessage, displayConversations};
+      .then((result) => {
+        console.log(result.rows);
+        return result.rows;
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
+
+  module.exports = { sendMessage, receiveMessage, displayConversations };

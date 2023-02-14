@@ -19,8 +19,28 @@
 
 <body>
   <h1>Favourites</h1>
-  <button id="fetch-users">Favourites</button>
-  <ul id="users"></ul>
+
+  <form method="POST" action="/favourites">
+    <h6>Enter user ID number</h6>
+    <input
+      type="text"
+      name="useridfav"
+    />
+    <br>
+    <br>
+    <h6>Enter posting ID number</h6>
+    <input
+      type="text"
+      name="postingidfav"
+    />
+    <br>
+    <button type="submit">
+      Add Favourite
+    </button>
+  </form>
+
+  <!-- <button id="fetch-users">Favourites</button>
+  <ul id="users"></ul> -->
   <p><%= JSON.stringify(data) %></p>
 </body>
 

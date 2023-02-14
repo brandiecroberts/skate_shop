@@ -26,8 +26,5 @@ const addUser = (newUserData) => {
 
 
 
-// module.exports = { getUsers, addUser, addFavourite, deleteFavourite, addPosting, deletePosting, sendMessage, receiveMessage, displayConversations, fetchPosting, fetchFavourites};
-
-
-
+module.exports = { getUsers, addUser };
 

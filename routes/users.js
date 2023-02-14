@@ -18,8 +18,6 @@ const router  = express.Router();
 // }))
 // );
 
-// const {getUsers, addUser, addFavourite, deleteFavourite, addPosting, deletePosting, sendMessage, receiveMessage, fetchPosting, fetchFavourites} = require('../db/queries/users.js');
-
 
 /////////GETS
 
@@ -27,66 +25,24 @@ router.get('/', (req, res) => {
   res.render('users');
 });
 
-router.get('/login', (req, res) => {
-  res.render('login');
-});
+
 
 router.get('/register', (req, res) => {
   res.render('register');
 });
 
-router.get('/conversations', (req, res) => {
-  res.render('conversations');
-});
-
-router.get('/favourites', (req, res) => {
-  fetchFavourites()
-  .then((response) => {
-    const templateVars = {data: response}
-    res.render('favourites', templateVars);
-  });
-});
-
-router.get('/newposting', (req, res) => {
-  res.render('newposting');
-});
-
-router.get('/mypostings', (req, res) => {
-  res.render('mypostings');
-});
 
 
-////////// POSTS
 
-router.post('/favourites', (req, res) => {
-});
+
+
+//POSTS
 
 router.post('/register', (req, res) => {
   res.render('register');
 });
 
-router.post('/login', (req, res) => {
-//if user not found {
-  //res.redirect('/register');
-// }
-  res.render('login');
-});
 
-router.post('/conversations', (req, res) => {
-  res.render('conversations');
-});
-
-router.post('/mypostings', (req, res) => {
-  res.render('mypostings');
-});
-
-router.post('/mypostings/:id/delete', (req, res) => {
-  res.render('mypostings/delete');
-});
-
-router.post('/newposting', (req, res) => {
-  res.render('newposting');
-});
 
 router.post("/logout", (req, res) => {
   // res.clearCookie("userID");

@@ -3,11 +3,19 @@ const router = express.Router();
 const conversationsQueries = require('../db/queries/conversations');
 
 router.get('/', (req, res) => {
-  sendMessage()
-  .then((response) => {
-    const templateVars = {data: response}
-    res.render('conversations', templateVars);
-  });
+  conversationsQueries.sendMessage()
+    .then((response) => {
+      const templateVars = {data: response}
+      res.render('conversations', templateVars);
+    });
+});
+
+router.get('/conversations', (req, res) => {
+  res.render('conversations');
+});
+
+router.post('/conversations', (req, res) => {
+  res.render('conversations');
 });
 
 module.exports = router;

@@ -24,27 +24,57 @@
   <nav class="navbar">
     <span class="navbar-logo">Skateboard Shop</span>
     <div class="navbar-heading">
+      <button type="submit" class="navbar-favourite">My Favourites</button>
     <button type="submit" class="navbar-action">Register</button>
     <button type="submit" class="navbar-action">Log In</button>
     <button type="submit" class="navbar-action">Log Out</button>
-    <button type="submit" class="navbar-favourite">My Favourites</button>
   </div>
   </nav>
 <br>
   <div class="header-main">
     <header class="header">
       <div class="header-image">
-          <img src="/midterm/images/header.png"/>
+
       </div>
       <br>
       <div class="header-name">
-          <h2>One Stop Shop</h2>
+          <h2>"Skateboarding is an art form,
+            <br>a lifestyle and a sport"</h2>
       </div>
   </header>
 <br>
+
   <div class="body-title">
-  <h1>Products</h1>
-</div>
+    <h1>Shop Products</h1>
+
+    <div class="priceSlider">
+
+      <h2>Filter By Price:</h2>
+
+            <div class='min-max'>
+              <div class='min'>
+                <label>Min</label><span id="min-value">
+                </span>
+            </div>
+            <div class="max">
+              <label>Max</label><span id="max-value">
+              </span>
+            </div>
+          </div>
+
+        <div class="min-max-range">
+          <input type="range" min="0" max="5000"
+          value="2000" class="range" id="min">
+          <input type="range" min="5001" max="10000"
+          value="8000" class="range" id="max">
+        </div>
+
+        <!-- <div style="clear: both;"></div> -->
+
+  </div>
+  </div>
+
+
 </body>
 
 </html>

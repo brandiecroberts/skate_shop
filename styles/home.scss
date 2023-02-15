@@ -1,5 +1,92 @@
 .body-title {
   font-family: monospace;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+  margin-top: 25px;
+  padding: 20px;
+}
+
+.priceSlider {
+  width: 300px;
+  background-color: rgb(253, 253, 253);
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: 0px 0px 3px 1px #888;
+  // float: right;
+  margin-top: 25px;
+
+}
+
+.priceSlider h2 {
+  font-size: 20px;
+  font-family: monospace;
+  font-weight: bold;
+}
+
+.min-max label {
+  font-family: monospace;
+  font-size: 15px;
+  float: left;
+  margin-right: 5px;
+  line-height: 1.5;
+}
+
+.min {
+  float: left;
+}
+
+.max {
+  float: right;
+}
+
+.min-max {
+  width: 90%;
+  max-width: 200px;
+  margin: 0 auto;
+  padding: 25px 0px 15px 0px;
+}
+
+.min-max span {
+  font-size: 10px;
+  text-align: center;
+  display: inline-block;
+  width: 30px;
+  border: 1px solid #dedede;
+}
+
+.min-max-range {
+  padding: 30px 0px 20px 0px;
+}
+
+.range {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 50%;
+  height: 10px;
+  max-width: 400px;
+  background-color: #dedede;
+  margin: 0;
+  padding: 0;
+  outline: none;
+  float: left;
+}
+
+.range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: yellow;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.range::-moz-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: yellow;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  cursor: pointer;
 }

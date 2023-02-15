@@ -15,6 +15,7 @@
   <link rel="stylesheet" href="/styles/nav.css" />
   <link rel="stylesheet" href="/styles/home.css" />
   <link rel="stylesheet" href="/styles/header.css" />
+  <link rel="stylesheet" href="/styles/favouritebutton.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
@@ -66,6 +67,7 @@
   </div>
 </div>
 
+<!-- PRODUCT BOXES -->
 <div class="listing-section">
   <div class="product">
     <div class="image-box">
@@ -73,11 +75,31 @@
     </div>
     <div class="text-box">
       <h2 class="item">Skateboard</h2>
+
+      <!-- ADD TO FAVS -->
+<div class="parent">
+  <div class="child">
+
+    <input type="checkbox" checked="checked" id="favourite" name="favourite-checkbox" value="favourite-button">
+    <label for="favourite" class="container">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-feather-heart">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+      </svg>
+
+      <div class="action">
+        <span class="option-1"> Add to Favourites</span>
+        <span class="option-2">Added to Favourites</span>
+      </div>
+
+    </label>
+  </div>
+</div>
+<!-- PRODUCT BOXES CONT'D -->
       <h3 class="price">$49.99</h3>
       <p class="description">A brand new complete deck</p>
       <button type="button" name="item-1-button" id="item-1-button">Message Seller</button>
     </div>
-  
+
   <div class="product">
     <div class="image-box">
       <div class="images" id="image-2"></div>

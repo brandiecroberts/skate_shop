@@ -11,16 +11,126 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
+  <link rel="stylesheet" href="/styles/nav.css" />
+  <link rel="stylesheet" href="/styles/favourites.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/users.js"></script>
 </head>
 
 <body>
-  <h1>Favourites</h1>
+  <nav class="navbar">
+    <span class="navbar-logo">Skateboard Shop</span>
+    <div class="navbar-heading">
+      <button type="submit" class="navbar-favourite">My Favourites</button>
+    <button type="submit" class="navbar-action">Register</button>
+    <button type="submit" class="navbar-action">Log In</button>
+    <button type="submit" class="navbar-action">Log Out</button>
+  </div>
+  </nav>
 
-  <form method="POST" action="/favourites">
+  <div class="body-favourites">
+  <div class="title-favourites">
+    <h1>Favourites</h1>
+  </div>
+
+
+  <div class="listing-section">
+    <div class="product">
+      <div class="image-box">
+        <div class="images" id="image-1"></div>
+      </div>
+      <div class="text-box">
+        <h2 class="item">Skateboard</h2>
+        <h3 class="price">$49.99</h3>
+        <p class="description">A brand new complete deck</p>
+        <button type="button" name="item-1-button" id="item-1-button">Message Seller</button>
+      </div>
+    </div>
+    <div class="product">
+      <div class="image-box">
+        <div class="images" id="image-2"></div>
+      </div>
+      <div class="text-box">
+        <h2 class="item">Apple</h2>
+        <h3 class="price">$4.99</h3>
+        <p class="description">A bag of delicious apples!</p>
+        <button type="button" name="item-2-button" id="item-2-button">Message Seller</button>
+      </div>
+    </div>
+    <div class="product">
+      <div class="image-box">
+        <div class="images" id="image-3"></div>
+      </div>
+      <div class="text-box">
+        <h2 class="item">Passionfruit</h2>
+        <h3 class="price">$4.99</h3>
+        <p class="description">A bag of delicious passionfruit!</p>
+        <button type="button" name="item-3-button" id="item-3-button">Message Seller</button>
+      </div>
+    </div>
+    <div class="product">
+      <div class="image-box">
+        <div class="images" id="image-4"></div>
+      </div>
+      <div class="text-box">
+        <h2 class="item">Pineapple</h2>
+        <h3 class="price">$4.99</h3>
+        <p class="description">A bag of delicious pineapples!</p>
+        <button type="button" name="item-4-button" id="item-4-button">Message Seller</button>
+      </div>
+    </div>
+    <div class="product">
+      <div class="image-box">
+        <div class="images" id="image-5"></div>
+      </div>
+      <div class="text-box">
+        <h2 class="item">Mango</h2>
+        <h3 class="price">$4.99</h3>
+        <p class="description">A bag of delicious mangos!</p>
+        <button type="button" name="item-5-button" id="item-5-button">Message Seller</button>
+      </div>
+    </div>
+    <div class="product">
+      <div class="image-box">
+        <div class="images" id="image-6"></div>
+      </div>
+      <div class="text-box">
+        <h2 class="item">Coconut</h2>
+        <h3 class="price">$4.99</h3>
+        <p class="description">A bag of delicious coconuts!</p>
+        <button type="button" name="item-6-button" id="item-6-button">Message Seller</button>
+      </div>
+    </div>
+    <div class="product">
+      <div class="image-box">
+        <div class="images" id="image-7"></div>
+      </div>
+      <div class="text-box">
+        <h2 class="item">Banana</h2>
+        <h3 class="price">$4.99</h3>
+        <p class="description">A bag of delicious bananas!</p>
+        <button type="button" name="item-7-button" id="item-7-button">Message Seller</button>
+      </div>
+    </div>
+    <div class="product">
+      <div class="image-box">
+        <div class="images" id="image-8"></div>
+      </div>
+      <div class="text-box">
+        <h2 class="item">Plum</h2>
+        <h3 class="price">$4.99</h3>
+        <p class="description">A bag of delicious plums!</p>
+
+        <button type="button" name="item-8-button" id="item-8-button">Message Seller</button>
+      </div>
+    </div>
+    <div class="product">
+      <div class="image-box">
+        <div class="images" id="image-9"></div>
+      </div>
+
+  <!-- <form method="POST" action="/favourites">
     <h6>Enter user ID number</h6>
     <input
       type="text"
@@ -37,11 +147,12 @@
     <button type="submit">
       Add Favourite
     </button>
-  </form>
+  </form> -->
+</div>
 
   <!-- <button id="fetch-users">Favourites</button>
   <ul id="users"></ul> -->
-  <p><%= JSON.stringify(data) %></p>
+  <!-- <p><%= JSON.stringify(data) %></p> -->
 </body>
 
 </html>

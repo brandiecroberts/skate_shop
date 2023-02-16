@@ -56,4 +56,12 @@ const fetchAllPostings = () => {
     });
 }
 
-module.exports = { addPosting, deletePosting, fetchPosting, fetchAllPostings };
+const markAsSold = (posting_id) => {
+  return db.query(`
+    UPDATE postings
+    SET sold = true
+    WHERE posting_id = $1
+  `, [posting_id])
+};
+
+module.exports = { addPosting, deletePosting, fetchPosting, fetchAllPostings, markAsSold };

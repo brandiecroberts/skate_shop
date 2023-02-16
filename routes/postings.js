@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { addPosting, deletePosting, fetchPosting, fetchAllPostings } = require('../db/queries/postings');
+const { addPosting, deletePosting, fetchPosting, fetchAllPostings, markAsSold } = require('../db/queries/postings');
 
 //-----------GET
 
@@ -37,9 +37,25 @@ router.post('/mypostings', (req, res) => {
   res.render('mypostings');
 });
 
-router.post('/mypostings/:id/delete', (req, res) => {
-  res.render('mypostings/delete');
+router.post('/:id/delete', (req, res) => {
+ // const postingId = ???;
+
+  deletePosting(postingId)
+  .then((response) => {
+    res.render('mypostings')
+  });
+  res.render('/');
 });
+
+router.post('/:id/sold', (req, res) => {
+  // const postingId = ???;
+
+   deletePosting(postingId)
+   .then((response) => {
+     res.render('mypostings')
+   });
+   res.render('/');
+ });
 
 // Create a new posting
 router.post('/new', (req, res) => {

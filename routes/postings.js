@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const postingsQueries = require('../db/queries/postings');
+const { addPosting, deletePosting, fetchPosting, fetchAllPostings } = require('../db/queries/postings');
 
-///GET
+//-----------GET
 
 router.get('/', (req, res) => {
-  postingsQueries.addPosting()
-  .then((response) => {
-    const templateVars = {data: response}
-    res.render('mypostings', templateVars);
-  });
+  const sellerId = req.session.userId;
+  fetchPosting(sellerId)
+    .then((response) => {
+      const templateVars = {data: response};
+      res.render('mypostings', templateVars);
+    });
 });
 
 router.get('/new', (req, res) => {
@@ -17,11 +18,19 @@ router.get('/new', (req, res) => {
 });
 
 router.get('/mypostings', (req, res) => {
-  res.render('mypostings');
+  const sellerId = req.session.userId;
+  console.log(sellerId);
+  fetchPosting(sellerId)
+    .then((response) => {
+      console.log(response);
+      const templateVars = {data: response}
+      res.render('mypostings', templateVars);
+    });
 });
 
 
-///POST
+/////-----------POST
+
 router.post('/mypostings', (req, res) => {
   res.render('mypostings');
 });
@@ -30,19 +39,20 @@ router.post('/mypostings/:id/delete', (req, res) => {
   res.render('mypostings/delete');
 });
 
+// Create a new posting
 router.post('/new', (req, res) => {
-  const seller_id = req.body.sellerid;
+  console.log('req.body', req.body);
+  const sellerId = req.session.userId;
   const title = req.body.title;
   const description = req.body.desc;
-  const photo_url = req.body.photourl;
+  const photoUrl = req.body.photourl;
   const price = req.body.price;
   const condition = req.body.condition;
 
-  postingsQueries.addPosting(seller_id, title, description, photo_url, price, condition)
-  .then((response) => {
-    console.log(response);
-    res.redirect('/postings/new');
-  })
+  addPosting(sellerId, title, description, photoUrl, price, condition)
+    .then((response) => {
+      res.render('mypostings');
+    });
 });
 
 module.exports = router;

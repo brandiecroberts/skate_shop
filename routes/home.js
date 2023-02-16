@@ -1,26 +1,21 @@
 const express = require('express');
 const router = express.Router();
-const { getUser, addUser } = require('../db/queries/users');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
+const { getUsersByEmail, addUser } = require('../db/queries/users');
+const { addFavourite } = require('../db/queries/favourites');
+const { fetchAllPostings } = require('../db/queries/postings');
 
-///GET
+// ---------- GET
 
 router.get('/', (req, res) => {
-  res.render('home');
-});
-
-router.get('/home', (req, res) => {
-  res.redirect('/');
+  fetchAllPostings()
+    .then((results) => {
+      const templateVars = {data: results};
+      res.render('home', templateVars);
+    });
 });
 
 router.get('/login', (req, res) => {
-  res.render('login');
-});
-
-router.post('/login', (req, res) => {
-  //if user not found {
-//res.redirect('/register');
-  // }
   res.render('login');
 });
 
@@ -28,66 +23,86 @@ router.get('/register', (req, res) => {
   res.render('register');
 });
 
-///POST
+// ---------- POST
 
+// REGISTER
 router.post('/register', (req, res) => {
   const name = req.body.name;
   const email = req.body.email;
   const password = req.body.password;
+  const hashedPassword = bcrypt.hashSync(password, 10);
+
   // Check for empty fields
-  if (email === '' || password === '' || name === '') {
+  if (!email || !password || !name) {
     return res.status(400).send("Please provide a name, email, and password.");
   }
+
   // Check if account/email already exists
-  // if (getUser(email)) {
-  //   console.log("getUser(email): ", getUser(email));
-  //   return res.status(400).send("Email already exists.");
-  // }
-  // If all checks pass, then add user to database
-  addUser(name, email, bcrypt.hashSync(password, 10))
+  getUsersByEmail(email)
     .then((response) => {
-      console.log(response);
-      res.redirect('/');
+      if (response) {
+      // If email already exists, return error
+        console.log("Login that already exists: ", response);
+        return res.status(400).send("Email already exists.");
+      }
+      // If email doesn't exist, add new user to 'users' table
+      addUser(name, email, hashedPassword)
+        .then((response) => {
+          // Create cookie session
+          const userId = response.id;
+          req.session.userId = userId;
+          // Redirect to home page after adding user
+          res.redirect('/');
+        });
     });
-
-  const id = Math.random().toString(36).substring(2, 6);
-  const newID = {email, id};
-  console.log('newid:', newID);
-  addUser[id] = newID;
-
-  res.cookie('userID', newID);
-  req.session.userId = newID;
 });
 
+// LOGIN
 router.post('/login', (req, res) => {
-  const email = req.body.email;
-  const password = req.body.password;
-  console.log('email: ', email);
-  console.log('password', password);
 
   // User lookup function:
+  const email = req.body.email;
+  const password = req.body.password;
 
-
-  getUser(email)
+  getUsersByEmail(email)
     .then((response) => {
-    // Check if password matches
-      if ((password === response.password)) {
-        console.log('password matches!!!');
-        res.redirect("/");
-      } else {
-        console.log('password doesnt match!!'); // DOESN'T REDIRECT TO REGISTER
-        res.redirect("/register");
+
+      // Check if user is registered
+      if (!response) {
+        return res.status(400).send("You do not have an account yet. Please register");
       }
+
+      // Check if password matches
+      const passwordMatch = bcrypt.compareSync(password, response.password);
+
+      if (!passwordMatch) {
+        console.log('password doesnt match!!'); // DOESN'T REDIRECT TO REGISTER
+        return res.status(400).send("password doesnt match!");
+      }
+      console.log('password matches!!!');
+      const userId = response.id;
+      req.session.userId = userId;
+      res.redirect("/");
     });
 });
 
+// LOGOUT
 router.post("/logout", (req, res) => {
-  // res.clearCookie("userID");
-  // req.session = null;
-  // res.redirect("/login");
-  res.render('logout');
+  req.session = null;
+  res.redirect("/login");
 });
 
+// ADD FAVOURITE
+router.post('/:id/', (req, res) => {
+  const userId = req.session.userId;
+  const postingId = req.body.posting_id;
+
+  addFavourite(userId, postingId)
+    .then((response) => {
+      console.log(response);
+      res.render('home');
+    });
+});
 
 
 

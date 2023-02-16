@@ -1,18 +1,18 @@
 const db = require('../connection');
 
 const addPosting = (seller_id, title, description, photo_url, price, condition) => {
-    return db.query(`
+  return db.query(`
   INSERT INTO postings (seller_id, title, description, photo_url, price, condition)
   VALUES ($1, $2, $3, $4, $5, $6)
   RETURNING *
   `, [seller_id, title, description, photo_url, price, condition])
-      .then((result) => {
-        return result.rows;
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
 
 const deletePosting = (posting) => {
   return db.query(`
@@ -28,12 +28,12 @@ const deletePosting = (posting) => {
     });
 };
 
-const fetchPosting = (posting) => {
+const fetchPosting = (seller_id) => {
   return db.query(`
     SELECT *
     FROM postings
     WHERE seller_id = $1
-    `, [posting.seller_id])
+    `, [seller_id])
     .then((result) => {
       return result.rows;
     })
@@ -42,4 +42,18 @@ const fetchPosting = (posting) => {
     });
 };
 
-module.exports = { addPosting, deletePosting, fetchPosting };
+const fetchAllPostings = () => {
+  return db.query(`
+    SELECT *
+    FROM postings
+    LIMIT 25
+    `)
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+}
+
+module.exports = { addPosting, deletePosting, fetchPosting, fetchAllPostings };

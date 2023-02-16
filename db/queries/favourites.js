@@ -1,28 +1,27 @@
 const db = require('../connection');
-const { getUsers } = require('./users');
-
 //// FAVOURITES
 
 const addFavourite = (user_id, posting_id) => {
-    return db.query(`
+  return db.query(`
       INSERT INTO favourites (user_id, posting_id)
       VALUES ($1, $2)
       RETURNING *`, [user_id, posting_id])
-      .then((result) => {
-        console.log(result.rows);
-        return result.rows;
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
+    .then((result) => {
+      console.log(result.rows);
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
 
-const deleteFavourite = (data) => {
+const deleteFavourite = (seller_id, posting_id) => {
   return db.query(`
       DELETE FROM favourites
+      JOIN postings ON postings.id = posting_id
       WHERE seller_id = $1
       AND postings.id - $2
-    `, [data.seller_id, data.id])
+    `, [seller_id, posting_id])
     .then((result) => {
       return result.rows;
     })
@@ -31,20 +30,20 @@ const deleteFavourite = (data) => {
     });
 };
 
-  const fetchFavouritesById = (data) => {
-    console.log(data);
-    return db.query(`
-    SELECT favourites.*, postings.*
+const fetchFavouritesById = (data) => {
+  console.log(data);
+  return db.query(`
+    SELECT *
     FROM favourites
     JOIN postings ON postings.id = posting_id
     WHERE user_id = $1
-    `, [1])
-      .then((result) => {
-        return result.rows[0];
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
+    `, [data])
+    .then((result) => {
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
 
-  module.exports = { addFavourite, deleteFavourite, fetchFavouritesById };
+module.exports = { addFavourite, deleteFavourite, fetchFavouritesById };

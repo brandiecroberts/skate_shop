@@ -40,14 +40,32 @@ const displayConversations = (data) => {
       JOIN users ON conversations.sender_id = users.id
       JOIN postings ON users.id = postings.seller_id
       WHERE conversations.sender_id = $1
-      `, [data.conversations.sender_id, data.conversations.posting_id])
-      .then((result) => {
-        console.log(result.rows);
-        return result.rows;
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
-  };
+      `, [data])
+    .then((result) => {
+      console.log(result.rows);
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
 
-  module.exports = { sendMessage, receiveMessage, displayConversations };
+const displayConversations2 = (data) => {
+  return db.query(`
+    SELECT time, message_content, title
+    FROM conversations c
+    JOIN postings p
+    ON posting_id = p.id
+    WHERE sender_id = $1
+    ORDER BY c.time;
+    `, [data])
+    .then((result) => {
+      console.log(result.rows);
+      return result.rows;
+    })
+    .catch((err) => {
+      console.log(err.message);
+    });
+};
+
+module.exports = { sendMessage, receiveMessage, displayConversations, displayConversations2 };

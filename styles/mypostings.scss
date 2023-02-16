@@ -1,5 +1,43 @@
 .body-postings {
   margin-top: 120px;
   font-family: monospace;
+  padding: 5px;
 }
 
+.body-postings h1 {
+  margin-left: 25px;
+}
+
+.newpost-button {
+  // right: 0px;
+  // width: 50px;
+  padding-top: 20px;
+  padding-right: 20px;
+  z-index: 2;
+  display: flex;
+  justify-content: space-around;
+  float: right;
+  margin-right: 100px;
+}
+
+.newpost-button a{
+  margin-bottom: 1em;
+  padding: 0.2em 0.50em;
+  border: 1px solid #c2c7cc;
+  font-family: monospace;
+  font-size: 1.1em;
+  line-height: 1.667em;
+  text-decoration: none;
+  color: #000000;
+  cursor: pointer;
+  background: yellow;
+  transition: color,border-color ease 0.3s;
+  border-radius: 2em;
+}
+
+
+.newpost-button a:hover {
+  border-color: #42B6F3;
+  color: #42B6F3;
+  text-decoration: none;
+}

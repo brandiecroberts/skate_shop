@@ -45,7 +45,9 @@ const fetchPosting = (seller_id) => {
 const fetchAllPostings = () => {
   return db.query(`
     SELECT *
-    FROM postings
+    FROM users,
+    JOIN postings,
+    ON users.id = postings.seller_id,
     LIMIT 25
     `)
     .then((result) => {

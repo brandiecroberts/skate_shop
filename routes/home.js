@@ -19,8 +19,14 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-  res.render('login');
+  const userId = req.session.userId;
+  const email = req.session.email;
+
+  const templateVars = {data: userId, email};
+
+  res.render('login', templateVars);
 });
+
 
 router.get('/register', (req, res) => {
   res.render('register');

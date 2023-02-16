@@ -7,11 +7,12 @@ const { addFavourite, deleteFavourite, fetchFavouritesById } = require('../db/qu
 router.get('/', (req, res) => {
 
   const userId = req.session.userId;
+  const email = req.session.email;
   console.log('userId: ', userId);
 
   fetchFavouritesById(userId)
     .then((result) => {
-      const templateVars = {data: result};
+      const templateVars = {data: result, userId, email};
       console.log(templateVars);
       res.render('favourites', templateVars);
     });

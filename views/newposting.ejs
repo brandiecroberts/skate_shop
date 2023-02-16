@@ -19,20 +19,7 @@
 </head>
 
 <body>
-  <nav class="navbar">
-    <span class="navbar-logo">Skateboard Shop</span>
-    <div class="navbar-heading">
-      <div class="navbutton">
-        <a href="/">Home</a>
-        <a href="/register">Register</a>
-        <a href="/login">Log In</a>
-        <a href="/favourites">My Favourites</a>
-        <a href="/postings">My Postings</a>
-        <!-- Need to fix log out button to only show when logged in -->
-        <a href="/login">Log Out</a>
-  </div>
-</div>
-  </nav>
+  <%- include('nav') %>
 
   <div class="body-title">
   <h1>New Posting</h1>
@@ -40,8 +27,6 @@
 
 <div class="body-new">
   <form method="POST" action="/postings/new">
-    <h4>Enter your user ID</h4>
-    <input type="text" name="sellerid">
     <h4>Enter posting title</h4>
     <input type="text" name="title">
     <h4>Enter description</h4>

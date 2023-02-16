@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 const express = require('express');
 const router = express.Router();
 const { addPosting, deletePosting, fetchPosting, fetchAllPostings, markAsSold } = require('../db/queries/postings');
@@ -15,7 +16,12 @@ router.get('/', (req, res) => {
 });
 
 router.get('/new', (req, res) => {
-  res.render('newposting');
+  const userId = req.session.userId;
+  const email = req.session.email;
+
+  const templateVars = {userId, email};
+
+  res.render('newposting', templateVars);
 });
 
 router.get('/mypostings', (req, res) => {
@@ -25,41 +31,43 @@ router.get('/mypostings', (req, res) => {
   fetchPosting(userId)
     .then((response) => {
       console.log(response);
-      const templateVars = {data: response, userId, email}
+      const templateVars = {data: response, userId, email};
       res.render('mypostings', templateVars);
     });
 });
-
-
 /////-----------POST
 
 router.post('/mypostings', (req, res) => {
-  res.render('mypostings');
+  const userId = req.session.userId;
+  const email = req.session.email;
+  const templateVars = {userId, email};
+  res.render('mypostings', templateVars);
 });
 
 router.post('/:id/delete', (req, res) => {
- // const postingId = ???;
+  // const postingId = ???;
 
   deletePosting(postingId)
-  .then((response) => {
-    res.render('mypostings')
-  });
-  res.render('/');
+    .then(() => {
+      res.render('mypostings');
+    });
 });
 
 router.post('/:id/sold', (req, res) => {
   // const postingId = ???;
 
-   deletePosting(postingId)
-   .then((response) => {
-     res.render('mypostings')
-   });
-   res.render('/');
- });
+  deletePosting(postingId)
+    .then(() => {
+      res.render('mypostings');
+    });
+  res.render('/');
+});
+
 
 // Create a new posting
 router.post('/new', (req, res) => {
   console.log('req.body', req.body);
+
   const sellerId = req.session.userId;
   const title = req.body.title;
   const description = req.body.desc;
@@ -67,10 +75,30 @@ router.post('/new', (req, res) => {
   const price = req.body.price;
   const condition = req.body.condition;
 
+  const userId = req.session.userId;
+  const email = req.session.email;
+
+
   addPosting(sellerId, title, description, photoUrl, price, condition)
     .then((response) => {
-      res.render('mypostings');
+      const templateVars = {data: response, userId, email};
+      res.render('mypostings', templateVars);
+      // res.redirect('/postings', templateVars);
     });
 });
+
+//Mark as sold
+router.post('/sold', (req, res) => {
+  const posting_id = '';
+  const userId = req.session.userId;
+  const email = req.session.email;
+
+  markAsSold(posting_id)
+    .then((response) => {
+      const templateVars = {data: response, userId, email};
+      res.render('mypostings', templateVars);
+    });
+});
+
 
 module.exports = router;

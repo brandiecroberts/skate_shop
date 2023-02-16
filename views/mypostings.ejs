@@ -23,7 +23,6 @@
     const deleteButton = document.getElementById("delete-button");
     deleteButton.addEventListener("click", () => {
       // get the ID of the item to be deleted
-
       // send an AJAX request to the server
       fetch(`/postings/${itemId}/delete`, {
         method: "POST"
@@ -65,10 +64,10 @@
           <p class="description"><%= item.description %></p>
           <button type="button" name="delete-button" id="delete-button">Mark as Sold</button>
           <button type="button" name="sold-button" id="sold-button">Delete Post</button>
-
         </div>
       </div>
     <% } %>
+  </div>
 
 </div>
 

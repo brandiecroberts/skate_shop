@@ -13,7 +13,24 @@ outputMax.innerHTML = maxSlider.value;
 //SLIDER MOVES WITH MIN/MAX PRICE SHOWN
 minSlider.oninput = function() {
   outputMin.innerHTML = this.value;
-};
-maxSlider.oninput = function() {
-  outputMax.innerHTML = this.value;
-};
+  let minValue = this.value;
+
+  $("div.product price").each(function() => {
+    if ($(this).val() <= minValue)) {
+      $(this).hide();
+    } else {
+      $(this).show();
+    }
+  };
+
+  maxSlider.oninput = function() {
+    outputMax.innerHTML = this.value;
+    let maxValue = this.value;
+
+    $("div.product price").each(function() => {
+      if ($(this).val() <= maxValue)) {
+        $(this).hide();
+      } else {
+        $(this).show();
+      }
+    };

@@ -20,7 +20,7 @@ const deleteFavourite = (seller_id, posting_id) => {
       DELETE FROM favourites
       JOIN postings ON postings.id = posting_id
       WHERE seller_id = $1
-      AND postings.id - $2
+      AND postings.id = $2
     `, [seller_id, posting_id])
     .then((result) => {
       return result.rows;

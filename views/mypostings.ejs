@@ -16,30 +16,9 @@
   <link rel="stylesheet" href="/styles/productboxes.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/public/scripts/mypostings.js"></script>
+  <script defer src="/public/scripts/app.js"></script>
+  <script defer src="/db/queries/postings.js"></script>
 
-  <script>
-    // event listener for delete button
-    const deleteButton = document.getElementById("delete-button");
-    deleteButton.addEventListener("click", () => {
-      // get the ID of the item to be deleted
-      // send an AJAX request to the server
-      fetch(`/postings/${itemId}/delete`, {
-        method: "POST"
-      })
-      .then(response => {
-        if (response.ok) {
-          // reload the page after the item has been deleted
-          window.location.reload();
-        } else {
-          console.log("Error deleting item.");
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-    });
-  </script>
 
 </head>
 
@@ -54,16 +33,21 @@
 
   <div class="listing-section">
     <% for (let item of data) { %>
-      <div class="product">
+      <div class="product" id="posting-box">
         <div class="image-box">
-          <div class="images" id="image-1"></div>
+          <div class="images" id="image-1"><%= item.photourl %></div>
         </div>
         <div class="text-box">
           <h2 class="item"><%= item.title %></h2>
           <h3 class="price"><%= item.price %></h3>
           <p class="description"><%= item.description %></p>
-          <button type="button" name="delete-button" id="delete-button">Mark as Sold</button>
-          <button type="button" name="sold-button" id="sold-button">Delete Post</button>
+          <button type="button" name="delete-button" id="delete-button"></button>>Mark as Sold</button>
+
+          <form form method="POST" action="/postings/<%= item.id %>/delete">
+            <button type="submit" name="delete-button" id="delete-button">Delete Post</button>
+          </form>
+
+
         </div>
       </div>
     <% } %>

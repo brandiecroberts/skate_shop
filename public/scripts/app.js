@@ -1,5 +1,7 @@
 // Client facing scripts here
 
+const { fetchPosting } = require("../../db/queries/postings");
+
 
 //FILTER BY PRICE FUNCTIONALITY
 const minSlider = document.getElementById('min');

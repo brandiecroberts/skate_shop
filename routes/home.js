@@ -43,6 +43,7 @@ router.post('/register', (req, res) => {
 
   // Check for empty fields
   if (!email || !password || !name) {
+    return res.render('')
     return res.status(400).send("Please provide a name, email, and password.");
   }
 

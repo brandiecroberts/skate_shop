@@ -18,8 +18,7 @@ router.get('/', (req, res) => {
 router.get('/new', (req, res) => {
   const userId = req.session.userId;
   const email = req.session.email;
-
-  const templateVars = {userId, email};
+  const templateVars = {userId, email}
 
   res.render('newposting', templateVars);
 });
@@ -40,17 +39,19 @@ router.get('/mypostings', (req, res) => {
 router.post('/mypostings', (req, res) => {
   const userId = req.session.userId;
   const email = req.session.email;
-  const templateVars = {userId, email};
+  const templateVars = {data: response, userId, email};
   res.render('mypostings', templateVars);
 });
 
 router.post('/:id/delete', (req, res) => {
-  // const postingId = ???;
+  const postingId = req.params.id;
+  const userId = req.session.userId;
+  console.log('postingId', postingId);
 
-  deletePosting(postingId)
-    .then(() => {
-      res.render('mypostings');
-    });
+  deletePosting(userId, postingId)
+  .then((response) => {
+    res.redirect('/postings/mypostings')
+  });
 });
 
 router.post('/:id/sold', (req, res) => {
@@ -79,11 +80,14 @@ router.post('/new', (req, res) => {
   const email = req.session.email;
 
 
+  const userId = req.session.userId;
+  const email = req.session.email;
+
+
   addPosting(sellerId, title, description, photoUrl, price, condition)
     .then((response) => {
       const templateVars = {data: response, userId, email};
       res.render('mypostings', templateVars);
-      // res.redirect('/postings', templateVars);
     });
 });
 
@@ -94,10 +98,10 @@ router.post('/sold', (req, res) => {
   const email = req.session.email;
 
   markAsSold(posting_id)
-    .then((response) => {
-      const templateVars = {data: response, userId, email};
-      res.render('mypostings', templateVars);
-    });
+  .then((response) => {
+    const templateVars = {data: response, userId, email};
+    res.render('mypostings', templateVars);
+  })
 });
 
 

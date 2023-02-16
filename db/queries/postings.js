@@ -14,12 +14,12 @@ const addPosting = (seller_id, title, description, photo_url, price, condition) 
     });
 };
 
-const deletePosting = (posting) => {
+const deletePosting = (seller_id, posting_id) => {
   return db.query(`
       DELETE FROM postings
       WHERE seller_id = $1
-      AND postings.id - $2
-    `, [posting.seller_id, posting.id])
+      AND postings.id = $2
+    `, [seller_id, posting_id])
     .then((result) => {
       return result.rows;
     })
@@ -64,6 +64,12 @@ const markAsSold = (posting_id) => {
     SET sold = true
     WHERE posting_id = $1
   `, [posting_id])
+  .then((result) => {
+    return result.rows;
+  })
+  .catch((err) => {
+    console.log(err.message);
+  });
 };
 
 module.exports = { addPosting, deletePosting, fetchPosting, fetchAllPostings, markAsSold };

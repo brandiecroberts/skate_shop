@@ -8,26 +8,25 @@ router.get('/', (req, res) => {
 
   const userId = req.session.userId;
   const email = req.session.email;
-  console.log('userId: ', userId);
+
 
   fetchFavouritesById(userId)
     .then((result) => {
       const templateVars = {data: result, userId, email};
-      console.log(templateVars);
       res.render('favourites', templateVars);
     });
 });
 
 //Delete favourite from Favourites
-router.delete('/:id', (req, res) => {
+router.delete('/:id/delete', (req, res) => {
   const userId = req.session.userId;
   console.log('userId: ', userId);
-  const postingId = req.body.posting_id;
+  const postingId = req.params.id;
   console.log('postingId:', postingId);
 
   deleteFavourite(userId, postingId)
     .then(() => {
-      return res.render('favourites');
+      return res.redirect('/favourites');
     });
 });
 

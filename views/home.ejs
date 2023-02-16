@@ -11,7 +11,6 @@
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" />
   <link rel="stylesheet" href="/vendor/border-box.css" />
   <link rel="stylesheet" href="/styles/main.css" />
-  <link rel="stylesheet" href="/styles/layout.css" />
   <link rel="stylesheet" href="/styles/nav.css" />
   <link rel="stylesheet" href="/styles/home.css" />
   <link rel="stylesheet" href="/styles/header.css" />
@@ -20,23 +19,11 @@
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/home.js"></script>
 </head>
 
 <body>
-  <nav class="navbar">
-    <span class="navbar-logo">Skateboard Shop</span>
-    <div class="navbar-heading">
-      <div class="navbutton">
-        <a href="/">Home</a>
-        <a href="register">Register</a>
-        <a href="login">Log In</a>
-        <a href="favourites">My Favourites</a>
-        <a href="postings">My Postings</a>
-        <!-- Need to fix log out button to only show when logged in -->
-        <a href="login">Log Out</a>
-  </div>
-</div>
-  </nav>
+  <%- include('nav') %>
 
   <div class="header-main">
     <header class="header">
@@ -81,6 +68,8 @@
     </div>
     <div class="text-box">
       <h2 class="item">Skateboard</h2>
+
+
 
       <!-- ADD TO FAVS -->
 <div class="parent">

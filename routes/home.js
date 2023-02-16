@@ -8,9 +8,12 @@ const { fetchAllPostings } = require('../db/queries/postings');
 // ---------- GET
 
 router.get('/', (req, res) => {
+  const userId = req.session.userId;
+  const email = req.session.email;
+
   fetchAllPostings()
     .then((results) => {
-      const templateVars = {data: results};
+      const templateVars = {data: results, userId, email};
       res.render('home', templateVars);
     });
 });

@@ -4,7 +4,9 @@
 }
 
 label[for=favourite] {
-  width: 215px;
+  // width: 215px;
+  font-size: small;
+  font-family: monospace;
   background-color: white;
   display: -webkit-box;
   display: -webkit-flex;

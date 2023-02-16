@@ -5,10 +5,11 @@ const { addPosting, deletePosting, fetchPosting, fetchAllPostings } = require('.
 //-----------GET
 
 router.get('/', (req, res) => {
-  const sellerId = req.session.userId;
-  fetchPosting(sellerId)
+  const userId = req.session.userId;
+  const email = req.session.email;
+  fetchPosting(userId)
     .then((response) => {
-      const templateVars = {data: response};
+      const templateVars = {data: response, userId, email};
       res.render('mypostings', templateVars);
     });
 });
@@ -18,12 +19,13 @@ router.get('/new', (req, res) => {
 });
 
 router.get('/mypostings', (req, res) => {
-  const sellerId = req.session.userId;
-  console.log(sellerId);
-  fetchPosting(sellerId)
+  const userId = req.session.userId;
+  const email = req.session.email;
+
+  fetchPosting(userId)
     .then((response) => {
       console.log(response);
-      const templateVars = {data: response}
+      const templateVars = {data: response, userId, email}
       res.render('mypostings', templateVars);
     });
 });

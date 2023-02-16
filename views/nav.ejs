@@ -1,0 +1,26 @@
+
+<nav class="navbar">
+  <span class="navbar-logo">Skateboard Shop</span>
+  <div class="navbar-heading">
+    <span class="navbar-buttons">
+      <% if(userId){ %>
+        <% if (email) { %>
+        <a class="nav-item nav-link"><%= email %></a>
+        <% } %>
+    <div class="navbutton">
+      <a href="/">Home</a>
+      <a href="register">Register</a>
+      <a href="login">Log In</a>
+      <a href="favourites">My Favourites</a>
+      <a href="postings">My Postings</a>
+      <% } else { %>
+        <a class="login" href="/login">
+          <button type="submit" style="margin:7px;">Go to Login</button>
+        </a>
+        <a class="register" href="/register">
+          <button type="submit">Create an account</button>
+        </a>
+        <% } %>
+</div>
+</div>
+</nav>

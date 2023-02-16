@@ -4,7 +4,7 @@
 }
 
 label[for=favourite] {
-  width: 250px;
+  width: 215px;
   background-color: white;
   display: -webkit-box;
   display: -webkit-flex;
@@ -29,6 +29,7 @@ input[type=checkbox] {
   display: none;
 }
 
+//HEART BUTTON TURNS RED WHEN PRESSED
 input:checked + label svg {
   fill: hsl(0deg 100% 50%);
   stroke: hsl(0deg 100% 50%);
@@ -92,6 +93,7 @@ input:checked + label svg {
   }
 }
 
+//ADD TO FAVS FLIPS TO ADDED TO FAVS
 input + label .action {
   position: relative;
   overflow: hidden;
@@ -107,7 +109,7 @@ input + label .action span {
   transition: all .5s;
 }
 
-
+// ADD TO FAVOURITE DISAPPEARS WHEN IT FLIPS TO ADDED
 input + label .action span.option-1 {
   -webkit-transform: translate(0px,0%);
      -ms-transform: translate(0px,0%);

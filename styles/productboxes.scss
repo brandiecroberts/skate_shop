@@ -5,11 +5,11 @@
   box-sizing: border-box;
 }
 
-.listing-section, .cart-section {
+.listing-section {
   width: 100%;
   float: left;
   padding: 1%;
-  border-bottom: 0.01em solid #dddbdb;
+  border-bottom: 0.01em solid #f01313;
 }
 
 .product {
@@ -53,11 +53,11 @@
 /* IMAGES */
 #image-1 {background-image: url('/images/product1.png')}
 
-#image-2 {background-image: url("https://newenglandapples.files.wordpress.com/2014/10/img_5595.jpg")}
+#image-2 {background-image: url('/images/product2.png')}
 
-#image-3 {background-image: url("https://sc01.alicdn.com/kf/UT8ovSIXQNaXXagOFbXt/Fresh-Passion-Fruit-with-Best-Price-and.jpg")}
+#image-3 {background-image: url('/images/product3.png')}
 
-#image-4 {background-image: url("http://www.foodmatters.com/media/images/articles/16-powerful-reasons-to-eat-pineapple.jpg")}
+#image-4 {background-image: url('/images/product4.png')}
 
 #image-5 {background-image: url("http://membrillo.com.au/wp-content/uploads/2016/11/bg-mango-01.jpg")}
 
@@ -74,11 +74,12 @@
   border: 0.01em solid #dddbdb;
   border-radius: 0 0 2% 2%;
   padding: 1em;
+  background-color: white;
 }
 
-h2, h3 {
+h2[class=item], h3[class=price] {
   float: left;
-  font-family: 'Roboto', sans-serif;
+  font-family: monospace;
   font-weight: 400;
   font-size: 1em;
   text-transform: uppercase;
@@ -95,11 +96,11 @@ h2, h3 {
   color: Grey;
 }
 
-.description, label, button, input {
+.description, button[type=button] {
   float: left;
   clear: left;
   width: 100%;
-  font-family: 'Roboto', sans-serif;
+  font-family: monospace;
   font-weight: 300;
   font-size: 1em;
   text-align: center;
@@ -110,20 +111,8 @@ input:focus {
   outline-color: #fdf;
 }
 
-label {
-  width: 60%;
-}
 
-.text-box input {
-  width: 15%;
-  clear: none;
-}
-
-.text-box button {
-  margin-top: 1em;
-}
-
-button {
+button[type=button] {
   padding: 2%;
   background-color: #dfd;
   border: none;
@@ -143,15 +132,3 @@ button:active {
   background-color: #fdf;
 }
 
-.table-heading, .table-content {
-  width: 75%;
-  margin: 1% 12.25%;
-  float: left;
-  background-color: #dfd;
-}
-
-.table-heading h2 {
-  padding: 1%;
-  margin: 0;
-  text-align: center;
-}

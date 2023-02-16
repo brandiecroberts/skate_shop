@@ -23,7 +23,7 @@
 
 .navbar-favourite {
   display: flex;
-  
+
   font-family: monospace;
   font-size: 10px;
   font-weight: bold;
@@ -46,5 +46,40 @@ align-items: center;
   color: white;
   display: flex;
   align-items: center;
+}
 
+// HOME BUTTON
+.navbutton {
+  // right: 0px;
+  // width: 50px;
+  padding-top: 20px;
+  padding-right: 20px;
+  position: fixed;
+  z-index: 2;
+  display: flex;
+  // flex-direction: row;
+  // align-items: flex-end;
+  // justify-content: space-evenly;
+  // margin-right: 100px;
+}
+
+.navbutton a {
+  // display: block;
+  margin-bottom: 1em;
+  padding: 0.2em 0.50em;
+  border: 1px solid #c2c7cc;
+  font-family: monospace;
+  font-size: 1.1em;
+  line-height: 1.667em;
+  text-decoration: none;
+  color: #000000;
+  cursor: pointer;
+  background: yellow;
+  transition: color,border-color ease 0.3s;
+  border-radius: 2em;
+}
+.navbutton a:hover {
+  border-color: #42B6F3;
+  color: #42B6F3;
+  text-decoration: none;
 }

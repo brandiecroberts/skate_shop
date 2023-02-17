@@ -31,6 +31,17 @@ router.delete('/:id', (req, res) => {
     });
 });
 
+router.post('/:id', (req, res) => {
+  const userId = req.session.userId;
+  const itemId = req.params.id;
+
+  addFavourite(userId, itemId)
+    .then(() => {
+      return res.send("It posted!");
+    });
+});
+
+
 
 
 

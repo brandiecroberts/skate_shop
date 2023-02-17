@@ -23,17 +23,6 @@ router.get('/new', (req, res) => {
   res.render('newposting', templateVars);
 });
 
-router.get('/mypostings', (req, res) => {
-  const userId = req.session.userId;
-  const email = req.session.email;
-
-  fetchPosting(userId)
-    .then((response) => {
-      console.log(response);
-      const templateVars = {data: response, userId, email};
-      res.render('mypostings', templateVars);
-    });
-});
 /////-----------POST
 
 router.post('/mypostings', (req, res) => {
@@ -50,7 +39,7 @@ router.post('/:id/delete', (req, res) => {
 
   deletePosting(userId, postingId)
   .then((response) => {
-    res.redirect('/postings/mypostings')
+    res.redirect('/postings')
   });
 });
 

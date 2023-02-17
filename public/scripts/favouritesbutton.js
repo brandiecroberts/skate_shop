@@ -1,12 +1,17 @@
-var elements = document.querySelectorAll("input[type = button][value=something]");
-elements[0].addEventListener('click', function(event){
-     event.preventDefault()
-      //do anything after button is clicked
-  })
+$('.option-1');
+const addFav = $('.option-1');
+console.log(addFav);
 
+for (let fav of addFav) {
+  console.log($(fav));
+  const $fav = $(fav);
 
-  $("input[name='favourite-checkbox'])
-  
-  .on("click",()=>{
-
+  $fav.on("click", function() {
+    let itemId = $fav.data('item-id');
+    console.log($fav.data('item-id'));
+    $.post(`/favourites/${itemId}`)
+      .then((response) => {
+        console.log(response);
+      });
   });
+}

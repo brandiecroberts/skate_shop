@@ -2,8 +2,9 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const { getUsersByEmail, addUser } = require('../db/queries/users');
-const { addFavourite } = require('../db/queries/favourites');
+const { addFavourite, fetchFavouritesById } = require('../db/queries/favourites');
 const { fetchAllPostings } = require('../db/queries/postings');
+
 
 // ---------- GET
 
@@ -11,11 +12,26 @@ router.get('/', (req, res) => {
   const userId = req.session.userId;
   const email = req.session.email;
 
-  fetchAllPostings()
+  const postingsPromise = fetchAllPostings();
+  const favouritesPromise = fetchFavouritesById(userId);
+
+  Promise.all([postingsPromise, favouritesPromise])
     .then((results) => {
-      const templateVars = {data: results, userId, email};
+      console.log(results);
+      const postings = results[0];
+      const favourites = results[1];
+      console.log('favs', favourites);
+
+      const mapFavourites = favourites.map((favourite) => {
+        return favourite.posting_id;
+      });
+      console.log(mapFavourites);
+
+      const templateVars = {data: postings, mapFavourites, userId, email};
       res.render('home', templateVars);
     });
+
+
 });
 
 router.get('/login', (req, res) => {

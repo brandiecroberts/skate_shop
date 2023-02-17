@@ -76,8 +76,6 @@ router.post('/new', (req, res) => {
   const price = req.body.price;
   const condition = req.body.condition;
 
-  const userId = req.session.userId;
-  const email = req.session.email;
 
 
   const userId = req.session.userId;

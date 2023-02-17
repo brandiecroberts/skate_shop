@@ -34,8 +34,9 @@ const fetchFavouritesById = (data) => {
   console.log(data);
   return db.query(`
     SELECT *
-    FROM favourites
-    JOIN postings ON postings.id = posting_id
+    FROM users
+    JOIN postings ON users.id = postings.seller_id
+    JOIN favourites ON postings.id = favourites.posting_id
     WHERE user_id = $1
     `, [data])
     .then((result) => {

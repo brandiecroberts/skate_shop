@@ -94,8 +94,9 @@
 
           <h3 class="price">$<%= item.price %></h3>
           <p class="description"><%= item.description %></p>
-          <button type="button" name="delete-button" id="delete-button">Mark as Sold</button>
-          <button type="button" name="sold-button" id="sold-button">Delete Post</button>
+          <a href="mailto:<%= item.email %>">
+            <button type="button" name="sold-button" id="sold-button">Message Seller</button>
+          </a>
         </div>
       </div>
     <% } %>

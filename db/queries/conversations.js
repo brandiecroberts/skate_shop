@@ -1,5 +1,6 @@
 const e = require('express');
 const db = require('../connection');
+
 //// CONVERSATIONS
 
 const sendMessage = (data) => {
@@ -7,7 +8,6 @@ const sendMessage = (data) => {
       INSERT INTO conversations (time, message_content, posting_id, sender_id, recipient_id)
       VALUES ($1, $2, $3, $4, $5)`, [])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     })
     .catch((err) => {
@@ -25,7 +25,6 @@ const receiveMessage = (data) => {
       AND conversations.posting_id = $2;
       `, [data.conversations.sender_id, data.conversations.posting_id])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     })
     .catch((err) => {
@@ -42,7 +41,6 @@ const displayConversations = (data) => {
       WHERE conversations.sender_id = $1
       `, [data])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     })
     .catch((err) => {
@@ -60,7 +58,6 @@ const displayConversations2 = (data) => {
     ORDER BY c.time;
     `, [data])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     })
     .catch((err) => {

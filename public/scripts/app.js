@@ -58,3 +58,12 @@ maxSlider.oninput = function() {
     }
   });
 };
+
+
+
+// MARK AS SOLD
+
+function changeToSold() {
+  document.getElementById("sold-button").innerHTML = "SOLD";
+
+}

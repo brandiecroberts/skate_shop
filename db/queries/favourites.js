@@ -1,4 +1,5 @@
 const db = require('../connection');
+
 //// FAVOURITES
 
 const addFavourite = (user_id, posting_id) => {
@@ -7,7 +8,6 @@ const addFavourite = (user_id, posting_id) => {
       VALUES ($1, $2)
       RETURNING *`, [user_id, posting_id])
     .then((result) => {
-      console.log(result.rows);
       return result.rows;
     })
     .catch((err) => {

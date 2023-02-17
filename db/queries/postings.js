@@ -51,7 +51,6 @@ const fetchAllPostings = () => {
     LIMIT 25
     `)
     .then((result) => {
-      console.log(result);
       return result.rows;
     })
     .catch((err) => {

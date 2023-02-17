@@ -35,16 +35,15 @@ router.post('/mypostings', (req, res) => {
 router.post('/:id/delete', (req, res) => {
   const postingId = req.params.id;
   const userId = req.session.userId;
-  console.log('postingId', postingId);
 
   deletePosting(userId, postingId)
-  .then((response) => {
+  .then(() => {
     res.redirect('/postings')
   });
 });
 
 router.post('/:id/sold', (req, res) => {
-  // const postingId = ???;
+
 
   deletePosting(postingId)
     .then(() => {
@@ -56,7 +55,6 @@ router.post('/:id/sold', (req, res) => {
 
 // Create a new posting
 router.post('/new', (req, res) => {
-  console.log('req.body', req.body);
 
   const sellerId = req.session.userId;
   const title = req.body.title;
@@ -66,15 +64,9 @@ router.post('/new', (req, res) => {
   const condition = req.body.condition;
 
 
-
-  const userId = req.session.userId;
-  const email = req.session.email;
-
-
   addPosting(sellerId, title, description, photoUrl, price, condition)
-    .then((response) => {
-      const templateVars = {data: response, userId, email};
-      res.render('mypostings', templateVars);
+    .then(() => {
+      res.redirect('/postings');
     });
 });
 

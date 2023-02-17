@@ -16,8 +16,9 @@
   <link rel="stylesheet" href="/styles/productboxes.css" />
 
   <script src="/vendor/jquery-3.0.0.js"></script>
-  <script defer src="/public/scripts/app.js"></script>
-  <script defer src="/db/queries/postings.js"></script>
+  <script defer src="/scripts/app.js"></script>
+  <script defer src="/scripts/sold-button.js"></script>
+
 
 
 </head>
@@ -41,13 +42,14 @@
           <h2 class="item"><%= item.title %></h2>
           <h3 class="price"><%= item.price %></h3>
           <p class="description"><%= item.description %></p>
-          <button type="button" name="delete-button" id="delete-button"></button>>Mark as Sold</button>
-
+          <div>
+          <button type="button" name="sold-button" data-id="<%= item.id %>" class="sold-button" id="sold-button" onclick="changeToSold()">Mark as Sold</button>
+        </div>
+        <div>
           <form form method="POST" action="/postings/<%= item.id %>/delete">
-            <button type="submit" name="delete-button" id="delete-button">Delete Post</button>
+            <button type="submit" name="delete-button" class="delete-button">Delete Post</button>
           </form>
-
-
+          </div>
         </div>
       </div>
     <% } %>

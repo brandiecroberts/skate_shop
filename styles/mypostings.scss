@@ -9,8 +9,6 @@
 }
 
 .newpost-button {
-  // right: 0px;
-  // width: 50px;
   padding-top: 20px;
   padding-right: 20px;
   z-index: 2;
@@ -46,6 +44,19 @@
   background-color: yellow;
 }
 
+
 .delete-button {
-  background-color: rgb(254, 159, 159);
+  padding: 2%;
+  background-color: #dfd;
+  border: none;
+  border-radius: 2%;
+  float: left;
+  clear: left;
+  width: 100%;
+  font-family: monospace;
+  font-weight: 300;
+  font-size: 1em;
+  text-align: center;
+  margin: 0.2em auto;
 }
+

@@ -17,15 +17,15 @@ router.get('/', (req, res) => {
 
   Promise.all([postingsPromise, favouritesPromise])
     .then((results) => {
-      console.log(results);
+      //console.log(results);
       const postings = results[0];
       const favourites = results[1];
-      console.log('favs', favourites);
+      //console.log('favs', favourites);
 
       const mapFavourites = favourites.map((favourite) => {
         return favourite.posting_id;
       });
-      console.log(mapFavourites);
+      //console.log(mapFavourites);
 
       const templateVars = {data: postings, mapFavourites, userId, email};
       res.render('home', templateVars);
@@ -33,6 +33,7 @@ router.get('/', (req, res) => {
 
 
 });
+
 
 router.get('/login', (req, res) => {
   const userId = req.session.userId;
@@ -102,7 +103,7 @@ router.post('/login', (req, res) => {
       const passwordMatch = bcrypt.compareSync(password, response.password);
 
       if (!passwordMatch) {
-        console.log('password doesnt match!!'); // DOESN'T REDIRECT TO REGISTER
+        console.log('password doesnt match!!');
         return res.status(400).send("password doesnt match!");
       }
       console.log('password matches!!!');

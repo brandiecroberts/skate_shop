@@ -34,7 +34,6 @@
 .navbar-heading {
 display: flex;
 justify-content: flex-end;
-// flex-direction: column;
 align-items: center;
 }
 
@@ -50,17 +49,10 @@ align-items: center;
 
 // HOME BUTTON
 .navbutton {
-  // right: 0px;
-  // width: 50px;
   padding-top: 20px;
   padding-right: 20px;
-  // position: fixed;
   z-index: 2;
   display: flex;
-  // flex-direction: row;
-  // align-items: flex-end;
-  // justify-content: space-evenly;
-  // margin-right: 100px;
 }
 
 .navbutton a {

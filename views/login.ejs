@@ -23,18 +23,15 @@
     <span class="navbar-logo">Skateboard Shop</span>
     <div class="navbar-heading">
       <div class="navbutton">
-        <a href="/">Home</a>
-        <a href="register">Register</a>
-        <a href="login">Log In</a>
-        <!-- Need to fix log out button to only show when logged in -->
-        <a href="login">Log Out</a>
-  </div>
-</div>
+        <a class="login" href="/login">Go to Login</a>
+        <a class="register" href="/register">Create an account</a>
+      </div>
+    </div>
   </nav>
 
   <div class="header-login">
-  <h1>Log In</h1>
-</div>
+    <h1>Log In</h1>
+  </div>
 
   <form method="POST" action="/login">
     <h4>Enter an email</h4>
@@ -45,7 +42,6 @@
     <div class="button-submit">
     <button type="submit">
       Submit
-    </button>
     </button>
   </form>
 </body>

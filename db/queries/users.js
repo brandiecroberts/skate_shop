@@ -27,7 +27,7 @@ const addUser = (name, email, password) => {
   RETURNING *
 `, [name, email, password])
     .then((result) => {
-      return result.rows;
+      return result.rows[0];
     })
     .catch((err) => {
       console.log(err.message);
